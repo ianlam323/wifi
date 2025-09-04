@@ -1,1 +1,148 @@
-hotel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel WiFi Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            background-color: #FEFCB3;
+            font-family: 'Alfa Slab One', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .wifi-card {
+            background-color: #A97E3B;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .wifi-info {
+            background-color: #F1EDDC;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #A97E3B;
+            margin-top: 0;
+            font-size: 28px;
+            text-shadow: 2px 2px 0 #F1EDDC;
+            letter-spacing: 1px;
+        }
+        
+        .info-item {
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .label {
+            font-size: 18px;
+            color: #A97E3B;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .value {
+            font-size: 22px;
+            background-color: #FEFCB3;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: #A97E3B;
+            border: 3px solid #A97E3B;
+            word-break: break-all;
+        }
+        
+        .note {
+            font-size: 14px;
+            color: #F1EDDC;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        
+        .qr-container {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        #qrcode {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .instruction {
+            color: #F1EDDC;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        .divider {
+            height: 3px;
+            background-color: #F1EDDC;
+            margin: 20px 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wifi-card">
+        <div class="wifi-info">
+            <h1>HOTEL WiFi ACCESS</h1>
+            
+            <div class="info-item">
+                <span class="label">WiFi SSID:</span>
+                <div class="value">IGC HK Hotel</div>
+                <div class="note">(ssid in full " IGC HK Hotel ")</div>
+            </div>
+            
+            <div class="info-item">
+                <span class="label">Password:</span>
+                <div class="value">igchkhotel</div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="qr-container">
+            <div id="qrcode"></div>
+        </div>
+        
+        <div class="instruction">Scan QR code to connect automatically</div>
+        <div class="note">Please note that WiFi is only available during 08:00 to 22:00</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Format the WiFi connection string with proper SSID spacing
+            const ssid = ' IGC HK Hotel ';
+            const password = 'igchkhotel';
+            const wifiString = `WIFI:S:${ssid};T:WPA;P:${password};;`;
+            
+            // Generate QR Code
+            new QRCode(document.getElementById('qrcode'), {
+                text: wifiString,
+                width: 180,
+                height: 180,
+                colorDark : "#A97E3B",
+                colorLight : "#F1EDDC",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+    </script>
+</body>
+</html>
